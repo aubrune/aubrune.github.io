@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang=en>
+<head>
+    <title>Aubrune : Art, ingénierie & formations numériques</title>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+    body { margin: 0; background: #000;}
+    video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url('/assets/poster.jpg') no-repeat; background-size: cover;  -webkit-transition: 1s opacity; transition: 1s opacity; }
+    div { font-family: 'Oxygen', sans-serif; text-align: justify; font-weight: 100; background: rgba(0,0,0,0.6); color: white; padding: 2rem; width: 33%; margin: 2rem; float: right; font-size: 1.2rem; }
+    h1 { font-size: 1.8rem; text-transform: uppercase; text-align: left; margin-top: 0; letter-spacing: .3rem; }
+    a { display: inline-block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); 
+    padding: .5rem; -webkit-transition: .6s background; transition: .6s background; }
+    a:hover { background: rgba(0,0,0,0.9); }
+    .stopfade { opacity: .5; }
+    #polina button, #mail {
+      text-align: center; 
+      float: right;
+      width: 35px;
+      padding: .4rem;
+      border: none; 
+      margin: 1rem auto; 
+      font-size: 1.3rem;
+      background: rgba(255,255,255,0.23);
+      color: #fff;
+      border-radius: 3px; 
+      cursor: pointer;
+      -webkit-transition: .3s background;
+      transition: .3s background;
+    }
+    #polina button:hover { 
+       background: rgba(0,0,0,0.5);
+    }
+
+    @media all and (max-device-width: 800px) {
+      body { background: url("/assets/poster.jpg") #000 no-repeat center center fixed; background-size: cover; }
+      #bgvid, #polina button { display: none; }
+      div{width:88%; font-size:2em;} 
+    }
+    </style>
+    <meta charset=utf-8>
+</head>
+
+<body>
+    <video playsinline autoplay muted loop poster="/assets/poster.jpg" id="bgvid">
+    <source src="/assets/aubrune.mp4" type="video/mp4">
+    </video> 
+    <div id="polina">
+    <button>▮▮</button>
+    <h1>Art, ingénierie & formations numériques</h1>
+    <p>Aubrune imagine et conçoit des systèmes numériques sur mesure à des fins artistiques ou éducatives. Grâce à la robotique et aux arts visuels, nous faisons de la technologie un messager fascinant et un vecteur de savoir-faire. Nos projets :</p>
+    <p><a href="http://www.arbalet-project.org"><img src="/assets/logo_AP_white_32.png" id="arbalet" title="Arbalet Project, pixel art éducatif"/></a>
+    <a href="http://www.instant-sphere.com"><img src="/assets/logo_IS_white_32.png" id="instantsphere" title="Instant Sphere, borne photo à 360°"/></a>
+    <a id="mail" href="http://arbalet-project.org/#contact" title="Contact">📩</a></p>
+    </div>
+    <script>
+    var video = document.getElementById("bgvid"),
+    pauseButton = document.querySelector("#polina button");
+
+    if (window.matchMedia('(prefers-reduced-motion)').matches) {
+        vid.removeAttribute("autoplay");
+        vid.pause();
+        pauseButton.innerHTML = "▶";
+    }
+
+    function vidFade() {
+      video.classList.add("stopfade");
+    }
+
+    video.addEventListener('ended', function()
+    {
+    // only functional if "loop" is removed 
+    video.pause();
+    vidFade();
+    }, false); 
+     
+    pauseButton.addEventListener("click", function() {
+      video.classList.toggle("stopfade");
+      if (video.paused) {
+        video.play();
+        pauseButton.innerHTML = "▮▮";
+      } else {
+        video.pause();
+        pauseButton.innerHTML = "▶";
+      }
+    }, false);
+
+    video.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    video.play();
+    })
+
+    </script>
+</body>
+</html>
